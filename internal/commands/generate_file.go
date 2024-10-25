@@ -2,7 +2,6 @@ package commands
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/apereiroc/go-bp/internal/templates"
 	"github.com/spf13/cobra"
@@ -17,29 +16,11 @@ func NewFileGeneratorCmd() *cobra.Command {
 			templateType := args[0]
 			outputPath := args[1]
 
-			var tmpl templates.Template
-
-			switch templateType {
-			case "makefile":
-				// Read user input
-				var author, projectName string
-
-				fmt.Print("Enter author: ")
-				_, err := fmt.Scanln(&author)
-				if err != nil {
-					log.Fatal(err)
-				}
-
-				fmt.Print("Enter project name: ")
-				_, err = fmt.Scanln(&projectName)
-				if err != nil {
-					log.Fatal(err)
-				}
-
-				tmpl = templates.MakefileTemplate{Author: author, ProjectName: projectName}
-
-			default:
-				fmt.Printf("Unknown template type: %s\n", templateType)
+			tmpl, err := templates.GetSingleFileTemplate(templateType)
+			if err != nil {
+				fmt.Printf("Error: %v\n", err)
+				single := templates.ListTemplates()
+				fmt.Printf("Supported single-file templates: %v\n", single)
 				return
 			}
 
