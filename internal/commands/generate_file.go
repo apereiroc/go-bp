@@ -2,15 +2,24 @@ package commands
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/apereiroc/go-bp/internal/templates"
 	"github.com/spf13/cobra"
 )
 
 func NewFileGeneratorCmd() *cobra.Command {
+	// Fetch available single-file templates at command definition
+	single := templates.ListTemplates()
+	availableTemplates := "No single-file templates are currently available."
+	if len(single) > 0 {
+		availableTemplates = "Available template types:\n- " + strings.Join(single, "\n- ")
+	}
+
 	return &cobra.Command{
 		Use:   "file [type] [output-path]",
 		Short: "Generate a single-file template",
+		Long:  fmt.Sprintf("Generates a single template file.\n\n%s", availableTemplates),
 		Args:  cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			templateType := args[0]
