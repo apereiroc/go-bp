@@ -1,0 +1,13 @@
+# Project Name: {{.ProjectName}}
+# Author: {{.Author}}
+CC := gcc
+CFLAGS := -Wall -O2
+TARGET := {{.ProjectName}}
+
+all: $(TARGET)
+
+$(TARGET): main.o
+	$(CC) $(CFLAGS) -o $(TARGET) main.o
+
+clean:
+	rm -f *.o $(TARGET)
