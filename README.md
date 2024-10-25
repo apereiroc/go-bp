@@ -13,3 +13,9 @@ Fill project info and see the result
 ```bash
 cat $project/Makefile
 ```
+
+See available commands with
+
+```bash
+go-bp file -h
+```
