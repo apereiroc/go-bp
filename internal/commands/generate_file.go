@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/apereiroc/temple/internal/templates"
+	"github.com/apereiroc/go-bp/internal/templates"
 	"github.com/spf13/cobra"
 )
 
