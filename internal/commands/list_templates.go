@@ -17,6 +17,7 @@ func NewListTemplatesCmd() *cobra.Command {
 			for _, t := range single {
 				fmt.Printf("  - %s\n", t)
 			}
+			fmt.Printf("Example: `go-bp file %s <output-dir>`\n", single[0])
 		},
 	}
 }
