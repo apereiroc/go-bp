@@ -21,23 +21,16 @@ func NewFileGeneratorCmd() *cobra.Command {
 		Short: "Generate a single-file template",
 		Long:  fmt.Sprintf("Generates a single template file.\n\n%s", availableTemplates),
 		Args:  cobra.ExactArgs(2),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			templateType := args[0]
 			outputPath := args[1]
 
 			tmpl, err := templates.GetSingleFileTemplate(templateType)
 			if err != nil {
-				fmt.Printf("Error: %v\n", err)
-				single := templates.ListTemplates()
-				fmt.Printf("Supported single-file templates: %v\n", single)
-				return
+				return err
 			}
 
-			if err := tmpl.Generate(outputPath); err != nil {
-				fmt.Printf("Error generating single template: %v\n", err)
-			} else {
-				fmt.Println("Template created successfully!")
-			}
+			return tmpl.Generate(outputPath)
 		},
 	}
 }
