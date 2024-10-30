@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/apereiroc/go-bp/internal/templates"
+	"github.com/apereiroc/go-bp/templates"
 	"github.com/spf13/cobra"
 )
 

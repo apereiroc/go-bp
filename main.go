@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/apereiroc/go-bp/internal/commands"
+	"github.com/apereiroc/go-bp/commands"
 	"github.com/spf13/cobra"
 )
 

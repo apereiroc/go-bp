@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/apereiroc/go-bp/internal/templates"
+	"github.com/apereiroc/go-bp/templates"
 	"github.com/spf13/cobra"
 )
 

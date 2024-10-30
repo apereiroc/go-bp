@@ -7,14 +7,14 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/apereiroc/go-bp/internal/templates"
+	"github.com/apereiroc/go-bp/templates"
 	"github.com/stretchr/testify/assert"
 )
 
 // Private mock implementation of the Template interface for testing
 type mockFileTemplate struct{}
 
-func (m *mockFileTemplate) Generate(outputPath string) error {
+func (m mockFileTemplate) Generate(outputPath string) error {
 	// For testing purposes, create a simple output file
 	outputPath = filepath.Join(outputPath, "Testfile.test")
 
@@ -32,7 +32,7 @@ func (m *mockFileTemplate) Generate(outputPath string) error {
 // This mockfile template is only defined when calling go test
 func TestRegisterNewFileTemplate_Sucess(t *testing.T) {
 	templates.RegisterSingleFileTemplate("mockfile", func() templates.Template {
-		return &mockFileTemplate{}
+		return mockFileTemplate{}
 	})
 
 	assert.NoError(t, nil)
